@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Gửi Ngọc Nhi "Xoài"</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg-0:#120a22;
+      --bg-1:#1a0f33;
+      --bg-2:#2b1250;
+      --pink:#f472b6;
+      --rose:#fb7185;
+      --violet:#c084fc;
+      --text:#eadcff;
+      --muted:#cbb7f2;
+      --card: rgba(18, 10, 34, .70);
+      --stroke: rgba(244,114,182,.25);
+      --shadow: rgba(192,132,252,.28);
+      --glass: blur(26px);
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html, body { height: 100%; }
+
+    body{
+      font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 22px;
+      overflow:hidden;
+      background:
+        radial-gradient(900px 520px at 15% 18%, rgba(192,132,252,.18), transparent 60%),
+        radial-gradient(820px 560px at 82% 28%, rgba(244,114,182,.16), transparent 62%),
+        radial-gradient(900px 620px at 48% 90%, rgba(251,113,133,.10), transparent 60%),
+        linear-gradient(135deg, var(--bg-0), var(--bg-1), var(--bg-2));
+      background-size: 200% 200%;
+      animation: bgShift 28s ease-in-out infinite;
+      position:relative;
+      isolation:isolate;
+    }
+
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* vignette + grain */
+    body::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(1200px 700px at 50% 25%, rgba(0,0,0,.10), rgba(0,0,0,.66)),
+        radial-gradient(900px 540px at 50% 80%, rgba(0,0,0,.20), rgba(0,0,0,.72));
+      z-index:0;
+      pointer-events:none;
+    }
+    body::after{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      opacity:.13;
+      mix-blend-mode: overlay;
+      z-index:0;
+      pointer-events:none;
+      transform: rotate(2deg);
+    }
+
+    #fx{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      z-index:1;
+      pointer-events:none;
+    }
+
+    .card{
+      width:min(900px, 100%);
+      background: var(--card);
+      backdrop-filter: var(--glass);
+      -webkit-backdrop-filter: var(--glass);
+      border-radius: 44px;
+      padding: clamp(28px, 5vw, 64px);
+      box-shadow: 0 34px 100px var(--shadow);
+      border: 1px solid rgba(255,255,255,.08);
+      position:relative;
+      z-index:2;
+      overflow:hidden;
+      opacity: 0;
+      transform: translateY(26px) scale(.98);
+      animation: cardIn 1.25s cubic-bezier(.2, 1.1, .3, 1) forwards .15s;
+    }
+
+    @keyframes cardIn{
+      to{ opacity:1; transform: translateY(0) scale(1); }
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius: 46px;
+      background:
+        radial-gradient(600px 260px at 18% 12%, rgba(244,114,182,.25), transparent 60%),
+        radial-gradient(640px 300px at 86% 18%, rgba(192,132,252,.22), transparent 60%),
+        radial-gradient(700px 340px at 50% 115%, rgba(251,113,133,.16), transparent 60%);
+      opacity: .85;
+      filter: blur(22px);
+      z-index:-1;
+    }
+
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius: 44px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(244,114,182,.35), rgba(192,132,252,.25), rgba(255,255,255,.08));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events:none;
+      opacity:.7;
+    }
+
+    .header{
+      text-align:center;
+      margin-bottom: 26px;
+    }
+
+    .title{
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: clamp(34px, 5.2vw, 56px);
+      letter-spacing: .2px;
+      color: var(--pink);
+      text-shadow: 0 0 28px rgba(244,114,182,.55);
+      display:inline-flex;
+      gap: 12px;
+      align-items: baseline;
+      justify-content:center;
+      line-height: 1.1;
+    }
+
+    .title .badge{
+      font-size: .55em;
+      color: rgba(255,255,255,.84);
+      background: rgba(244,114,182,.14);
+      border: 1px solid rgba(244,114,182,.22);
+      padding: 8px 12px;
+      border-radius: 999px;
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(244,114,182,.14);
+    }
+
+    .subtitle{
+      margin-top: 14px;
+      color: rgba(234,220,255,.78);
+      font-size: clamp(14px, 2.2vw, 16.5px);
+      line-height: 1.7;
+    }
+
+    .divider{
+      margin: 26px auto 0;
+      width: min(240px, 70%);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(244,114,182,.55), rgba(192,132,252,.45), transparent);
+      opacity:.9;
+    }
+
+    .letter{
+      margin-top: 34px;
+      display:flex;
+      flex-direction:column;
+      gap: 18px;
+    }
+
+    .text{
+      font-size: clamp(16px, 2.4vw, 20.5px);
+      line-height: 1.9;
+      color: var(--text);
+      text-align: justify;
+      text-wrap: pretty;
+    }
+
+    .text strong{
+      color: rgba(255,255,255,.92);
+      font-weight: 600;
+    }
+
+    .quote{
+      margin-top: 8px;
+      padding: 18px 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 18px 60px rgba(0,0,0,.25);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .quote::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(520px 220px at 15% 20%, rgba(192,132,252,.18), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    .quote p{
+      position:relative;
+      z-index:1;
+      color: rgba(234,220,255,.86);
+      font-size: clamp(15px, 2.2vw, 18px);
+      line-height: 1.85;
+      text-align: left;
+    }
+
+    .controls{
+      margin-top: 34px;
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content:center;
+    }
+
+    .btn{
+      appearance:none;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.92);
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: .2px;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(244,114,182,.26);
+      background: rgba(244,114,182,.10);
+    }
+    .btn:active{ transform: translateY(0); }
+    .btn.secondary:hover{
+      border-color: rgba(192,132,252,.26);
+      background: rgba(192,132,252,.10);
+    }
+
+    .extra{
+      margin-top: 22px;
+      display:none;
+      animation: fadeUp .45s ease forwards;
+      opacity:0;
+      transform: translateY(8px);
+    }
+    .extra.show{ display:block; }
+
+    @keyframes fadeUp{
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    .sign{
+      margin-top: 34px;
+      text-align:center;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 700;
+      color: rgba(249,168,212,.92);
+      letter-spacing: .2px;
+    }
+    .sign span{
+      color: rgba(244,114,182,.92);
+      text-shadow: 0 0 20px rgba(244,114,182,.35);
+    }
+
+    .hint{
+      margin-top: 14px;
+      text-align:center;
+      font-size: 13px;
+      color: rgba(234,220,255,.62);
+      line-height: 1.6;
+    }
+
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      body{ animation:none; }
+      .card{ animation:none; opacity:1; transform:none; }
+      #fx{ display:none; }
+      .extra{ animation:none; opacity:1; transform:none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <main class="card">
+    <header class="header">
+      <h1 class="title">
+        Gửi Ngọc Nhi "Xoài"
+        <span class="badge" title="Một chút lấp lánh, một chút buồn…">💕</span>
+      </h1>
+      <p class="subtitle">
+        Có những điều anh không nói kịp… nên anh gói lại ở đây, để nếu một ngày em vô tình mở ra,
+        em vẫn thấy <strong>một người từng rất trân trọng em</strong>.
+      </p>
+      <div class="divider" aria-hidden="true"></div>
+    </header>
+
+    <section class="letter" aria-label="Lời nhắn">
+      <p class="text" data-typing>
+        Nếu một ngày anh phải đi đến một nơi thật xa, nơi đó chỉ còn một mình anh…
+        điều anh sợ nhất không phải là khoảng cách, mà là <strong>mình sẽ dần quên cách nhìn nhau</strong>.
+      </p>
+
+      <p class="text">
+        Anh không dám hứa tương lai sẽ như thế nào, nhưng anh biết rất rõ một điều:
+        em đã từng là khoảng bình yên hiếm hoi của anh, và cũng là <strong>kỷ niệm đẹp nhất</strong> anh mang theo.
+      </p>
+
+      <div class="quote" role="note" aria-label="Một câu anh giữ lại">
+        <p>
+          “Có những cuộc chia tay không ồn ào. Chỉ là một ngày, mình thôi nhắn tin… rồi thành người lạ lúc nào không hay.”
+        </p>
+      </div>
+
+      <p class="text">
+        Nếu sau này em có buồn một chút, xin em đừng tự trách mình.
+        Đôi khi người ta lạc nhau không phải vì hết thương, mà vì <strong>không còn cùng một nhịp</strong>.
+      </p>
+
+      <p class="text">
+        Nếu có nhớ anh một chút thôi… thì nhớ rằng đã từng có một người rất trân trọng em,
+        trân trọng cả những ngày em cười — và cả những ngày em im lặng.
+      </p>
+
+      <div class="extra" id="extra">
+        <p class="text">
+          Anh mong em luôn được yêu thương theo cách dịu dàng nhất.
+          Và nếu ai đó đến sau anh, xin họ đừng làm em khóc vì những chuyện mà em không đáng phải chịu.
+        </p>
+        <p class="text">
+          Còn anh… anh sẽ học cách ổn. Chỉ là có thể thỉnh thoảng,
+          giữa một bài nhạc cũ hay một con đường quen, anh vẫn sẽ <strong>nhớ em hơi lâu hơn</strong> một chút.
+        </p>
+      </div>
+    </section>
+
+    <div class="controls" aria-label="Điều khiển">
+      <button class="btn" id="revealBtn" type="button">Mở thêm lời nhắn</button>
+      <button class="btn secondary" id="musicBtn" type="button" aria-pressed="false">
+        Bật nhạc nền
+      </button>
+      <span class="sr-only" id="musicStatus" aria-live="polite"></span>
+    </div>
+
+    <footer class="sign">Từ người thương em <span>nhiều lắm</span></footer>
+    <p class="hint">
+      Gợi ý: bấm “Bật nhạc nền” (trình duyệt thường chặn tự phát nhạc nếu chưa tương tác).
+    </p>
+  </main>
+
+  <script>
+    // ====== Typing effect (nhẹ, buồn) ======
+    (function typingEffect(){
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+      const el = document.querySelector('[data-typing]');
+      if (!el) return;
+      const full = el.textContent.trim().replace(/\s+/g,' ');
+      el.textContent = '';
+      let i = 0;
+      const speed = 18; // ms/char
+      const tick = () => {
+        i = Math.min(full.length, i + 1);
+        el.textContent = full.slice(0, i);
+        if (i < full.length) setTimeout(tick, speed);
+      };
+      setTimeout(tick, 220);
+    })();
+
+    // ====== Reveal more text ======
+    (function reveal(){
+      const btn = document.getElementById('revealBtn');
+      const extra = document.getElementById('extra');
+      if (!btn || !extra) return;
+
+      btn.addEventListener('click', () => {
+        const show = !extra.classList.contains('show');
+        extra.classList.toggle('show', show);
+        btn.textContent = show ? 'Khép lại' : 'Mở thêm lời nhắn';
+      });
+    })();
+
+    // ====== Music toggle (requires user gesture) ======
+    (function music(){
+      const btn = document.getElementById('musicBtn');
+      const live = document.getElementById('musicStatus');
+      if (!btn) return;
+
+      // Nguồn nhạc nhẹ, buồn (có thể thay bằng file .mp3 của bạn)
+      const audio = new Audio('https://assets.mixkit.co/music/preview/mixkit-dreaming-big-31.mp3');
+      audio.loop = true;
+      audio.volume = 0.25;
+
+      const setStatus = (playing) => {
+        btn.setAttribute('aria-pressed', String(playing));
+        btn.textContent = playing ? 'Tắt nhạc nền' : 'Bật nhạc nền';
+        if (live) live.textContent = playing ? 'Đã bật nhạc nền' : 'Đã tắt nhạc nền';
+      };
+
+      let playing = false;
+      btn.addEventListener('click', async () => {
+        try {
+          if (!playing) {
+            await audio.play();
+            playing = true;
+          } else {
+            audio.pause();
+            playing = false;
+          }
+          setStatus(playing);
+        } catch (e) {
+          // Autoplay policies / network
+          if (live) live.textContent = 'Không bật được nhạc (trình duyệt chặn hoặc mạng lỗi).';
+        }
+      });
+    })();
+
+    // ====== Canvas particles (VIP + mơ màng, không nặng DOM) ======
+    (function fx(){
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const canvas = document.getElementById('fx');
+      if (!canvas || prefersReduced) return;
+      const ctx = canvas.getContext('2d', { alpha: true });
+      if (!ctx) return;
+
+      const DPR = Math.min(2, window.devicePixelRatio || 1);
+      let w = 0, h = 0;
+      function resize(){
+        w = Math.floor(window.innerWidth);
+        h = Math.floor(window.innerHeight);
+        canvas.width = Math.floor(w * DPR);
+        canvas.height = Math.floor(h * DPR);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      }
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+
+      const glyphs = [
+        { t: '❤', c: 'rgba(244,114,182,.85)' },
+        { t: '💗', c: 'rgba(251,113,133,.80)' },
+        { t: '💖', c: 'rgba(244,114,182,.78)' },
+        { t: '🌸', c: 'rgba(232,121,249,.75)' },
+        { t: '✨', c: 'rgba(255,255,255,.75)' }
+      ];
+
+      const particles = [];
+      const MAX = 120;
+
+      function rand(min, max){ return min + Math.random() * (max - min); }
+      function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+
+      function spawn(){
+        const g = pick(glyphs);
+        particles.push({
+          x: rand(0, w),
+          y: rand(-140, -10),
+          vy: rand(18, 55) / 60,
+          vx: rand(-10, 10) / 60,
+          rot: rand(-0.9, 0.9),
+          r: rand(-0.02, 0.02),
+          a: rand(0.35, 0.9),
+          s: rand(14, 34),
+          t: g.t,
+          c: g.c
+        });
+        if (particles.length > MAX) particles.splice(0, particles.length - MAX);
+      }
+
+      // initial
+      for (let i = 0; i < 60; i++) spawn();
+
+      let last = performance.now();
+      function frame(now){
+        const dt = Math.min(34, now - last);
+        last = now;
+        const k = dt / 16.67;
+
+        ctx.clearRect(0, 0, w, h);
+        ctx.save();
+
+        // subtle mist
+        const grad = ctx.createRadialGradient(w*0.45, h*0.15, 40, w*0.45, h*0.15, Math.max(w,h));
+        grad.addColorStop(0, 'rgba(192,132,252,.06)');
+        grad.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+
+        for (const p of particles){
+          p.x += p.vx * k;
+          p.y += p.vy * k;
+          p.rot += p.r * k;
+          p.a -= 0.0012 * k;
+
+          if (p.y > h + 60 || p.a <= 0){
+            p.x = rand(0, w);
+            p.y = rand(-160, -20);
+            p.vy = rand(18, 58) / 60;
+            p.vx = rand(-10, 10) / 60;
+            p.rot = rand(-0.9, 0.9);
+            p.r = rand(-0.02, 0.02);
+            p.a = rand(0.35, 0.9);
+            p.s = rand(14, 34);
+            const g = pick(glyphs);
+            p.t = g.t;
+            p.c = g.c;
+          }
+
+          ctx.globalAlpha = Math.max(0, Math.min(1, p.a));
+          ctx.font = `${p.s}px "Poppins", system-ui, sans-serif`;
+          ctx.fillStyle = p.c;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillText(p.t, 0, 0);
+          ctx.restore();
+        }
+
+        ctx.restore();
+
+        // gentle spawn cadence
+        if (Math.random() < 0.35) spawn();
+
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    })();
+  </script>
+</body>
+</html>
